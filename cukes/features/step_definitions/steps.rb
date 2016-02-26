@@ -1,5 +1,5 @@
 Given(/^that I'm at the promises homepage$/) do
-    visit PromisesPage
+    visit(PromisesPage)
 end
 
 When(/^I click on Simple Handling$/) do
