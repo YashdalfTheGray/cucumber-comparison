@@ -18,6 +18,6 @@
   "homepage": "https://github.com/YashdalfTheGray/cucumber-comparison#readme",
   "dependencies": {
     "cucumber": "^0.9.5",
-    "selenium-webdriver": "^2.52.0"
+    "webdriver-sync": "^0.17.0"
   }
 }
