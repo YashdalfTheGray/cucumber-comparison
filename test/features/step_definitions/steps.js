@@ -21,17 +21,12 @@ module.exports = function() {
 
     this.Then(/^I should see the simple handling page$/, function (callback) {
         var self = this;
-        var pageTitle = this.browser.findElement(By.tagName('h2'));
         webdriver.wait(function() {
-            return pageTitle.isDisplayed();
+            return self.browser.findElement(By.tagName('h2')).isDisplayed();
         }, {timeout: 1000, period: 100 });
 
-
-        // TODO This is where it errors out
-        // It tells me that the element is no longer attached to the page,
-        // which I think has something to do with the fact that we're
-        // depromisifying all of these operations, maybe?
-        console.log(pageTitle.getInnerHtml());
-        assert.equal(pageTitle.getText(), 'Simple Handling', callback, 'The page title is all wrong.');
+        var pageTitleText = self.browser.findElement(By.tagName('h2')).getInnerHtml();
+        console.log(pageTitleText);
+        assert.equal(pageTitleText, 'Simple Handling', callback, 'The page title is all wrong.');
     });
 };
