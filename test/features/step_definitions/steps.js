@@ -1,5 +1,6 @@
 var webdriver = require('webdriver-sync');
 var By = webdriver.By;
+var assert = require('cucumber-assert');
 
 module.exports = function() {
     this.Given(/^that I'm at the promises homepage$/, function () {
@@ -19,6 +20,18 @@ module.exports = function() {
     });
 
     this.Then(/^I should see the simple handling page$/, function (callback) {
-        callback.pending();
+        var self = this;
+        var pageTitle = this.browser.findElement(By.tagName('h2'));
+        webdriver.wait(function() {
+            return pageTitle.isDisplayed();
+        }, {timeout: 1000, period: 100 });
+
+        
+        // TODO This is where it errors out
+        // It tells me that the element is no longer attached to the page,
+        // which I think has something to do with the fact that we're
+        // depromisifying all of these operations, maybe?
+        console.log(pageTitle.getInnerHtml());
+        assert.equal(pageTitle.getText(), 'Simple Handling', callback, 'The page title is all wrong.');
     });
 };
