@@ -14,9 +14,9 @@ module.exports = function() {
         hamburger.click();
         var simpleHandlingLink = this.browser.findElement(By.cssSelector('.demo-list-item > span:nth-child(1)'));
         webdriver.wait(function() {
-            return simpleHandlingLink.isDisplayed();
+            return self.browser.findElement(By.cssSelector('.demo-list-item > span:nth-child(1)')).isDisplayed();
         }, { timeout: 1000, period: 100 });
-        simpleHandlingLink.click();
+        this.browser.findElement(By.cssSelector('.demo-list-item > span:nth-child(1)')).click();
     });
 
     this.Then(/^I should see the simple handling page$/, function (callback) {
@@ -26,7 +26,7 @@ module.exports = function() {
             return pageTitle.isDisplayed();
         }, {timeout: 1000, period: 100 });
 
-        
+
         // TODO This is where it errors out
         // It tells me that the element is no longer attached to the page,
         // which I think has something to do with the fact that we're
