@@ -12,7 +12,6 @@ module.exports = function() {
         var toolbar = this.browser.findElement(By.className('md-toolbar-tools'));
         var hamburger = toolbar.findElement(By.tagName('button'));
         hamburger.click();
-        var simpleHandlingLink = this.browser.findElement(By.cssSelector('.demo-list-item > span:nth-child(1)'));
         webdriver.wait(function() {
             return self.browser.findElement(By.cssSelector('.demo-list-item > span:nth-child(1)')).isDisplayed();
         }, { timeout: 1000, period: 100 });
@@ -22,11 +21,11 @@ module.exports = function() {
     this.Then(/^I should see the simple handling page$/, function (callback) {
         var self = this;
         webdriver.wait(function() {
-            return self.browser.findElement(By.tagName('h2')).isDisplayed();
+            return self.browser.findElement(By.cssSelector('.scroll-container > md-content > h2')).isDisplayed();
         }, {timeout: 1000, period: 100 });
 
-        var pageTitleText = self.browser.findElement(By.tagName('h2')).getInnerHtml();
-        console.log(pageTitleText);
-        assert.equal(pageTitleText, 'Simple Handling', callback, 'The page title is all wrong.');
+        var pageTitleText = self.browser.findElement(By.cssSelector('.scroll-container > md-content > h2')).getText();
+
+        assert.equal(pageTitleText, 'Simple Handling', callback, 'This is the wrong page!');
     });
 };
