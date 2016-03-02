@@ -25,3 +25,11 @@ end
 Then(/^I should see a toast with message "([^"]*)"$/) do |message|
     expect(on(SimpleHandlingPage).toast_message).to eq message
 end
+
+When(/^I click on Then\-Catch\-Finally$/) do
+    on(PromisesPage).promise_api
+end
+
+Then(/^I should see the promise api page$/) do
+    expect(on(PromiseApi).loaded?).to be true
+end
