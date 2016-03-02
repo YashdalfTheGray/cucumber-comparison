@@ -14,3 +14,8 @@ Feature: Promises demo
     And I fill "delay-input" with "1"
     And I click the set timeout button
     Then I should see a toast with message "This is a test."
+
+  Scenario: Navigating to the Then-Catch-Finally page
+    Given that I'm at the promises homepage
+    When I click on Then-Catch-Finally
+    Then I should see the promise api page
